@@ -15,8 +15,8 @@
 #' * `cv_err` a numeric with the cross-validation misclassification error.
 #'
 #' @examples
-#' my_knn_cv(penguin_data[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")],
-#'   penguin_data["species"], 5, 5)
+#' my_knn_cv(my_penguin[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")],
+#'   my_penguin["species"], 5, 5)
 #'
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
