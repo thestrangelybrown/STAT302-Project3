@@ -28,8 +28,8 @@ A list object containing:
 This function performs a one sample t-test.
 }
 \examples{
-my_t.test(t.test(x = mtcars$mpg, alternative = "two.sided",  mu = 20))
-my_t.test(t.test(x = mtcars$mpg, alternative = "one.sided",  mu = 10))
+data(mtcars)
+my_t_test(x = mtcars$mpg, alternative = "two.sided",  mu = 20)
 
 }
 \keyword{inference.}

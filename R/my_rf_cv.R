@@ -5,6 +5,7 @@
 #' @param k Numeric input representing the number of folds.
 #'
 #' @return Numeric indicating the cross validation MSE of the random forest models of fold \code{k}.
+#'
 #' @keywords inference.
 #'
 #' @examples
@@ -14,8 +15,9 @@
 #' @export
 my_rf_cv <- function(k) {
   # Organize data into table and split it
-  train <- penguin_data[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm")]
-  true <- penguin_data["body_mass_g"]
+  penguins <- tidyr::drop_na(palmerpenguins::penguins)
+  train <- penguins[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm")]
+  true <- penguins["body_mass_g"]
   n = nrow(train)
   folds <- sample(rep(1:k, length = n))
   data <- data.frame(train, true, "split" = folds)
@@ -27,7 +29,7 @@ my_rf_cv <- function(k) {
     data_train <- data %>% dplyr::filter(split != i)
     data_test <- data %>% dplyr::filter(split == i)
     # Train our model
-    tree_model <- randomForest(body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm, data = data_train, ntree = 100)
+    tree_model <- randomForest::randomForest(body_mass_g ~ bill_length_mm + bill_depth_mm + flipper_length_mm, data = data_train, ntree = 100)
     # Record predictions
     predictions <- predict(tree_model, data_test[,-4])
     # Calculate MSE

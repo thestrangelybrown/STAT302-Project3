@@ -27,8 +27,10 @@ This function outputs a predicted class using given covariates and the cross
 validation error associated with 1-knn and the given k-nn.
 }
 \examples{
-my_knn_cv(my_penguin[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")],
-  my_penguin["species"], 5, 5)
+penguins <- tidyr::drop_na(palmerpenguins::penguins)
+data1 <- penguins[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")]
+cl1 <- penguins["species"]
+my_knn_cv(data1, cl1, 5, 5)
 
 }
 \keyword{inference,}

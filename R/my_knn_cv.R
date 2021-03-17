@@ -14,6 +14,12 @@
 #' * `class` a vector of the predicted class $\hat{Y}_{i}$ for all observations.
 #' * `cv_err` a numeric with the cross-validation misclassification error.
 #'
+#' @examples
+#' penguins <- tidyr::drop_na(palmerpenguins::penguins)
+#' data1 <- penguins[c("bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g")]
+#' cl1 <- penguins["species"]
+#' my_knn_cv(data1, cl1, 5, 5)
+#'
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
   # Organize data into table and split it
@@ -31,8 +37,8 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
     data_test <- data %>% dplyr::filter(split == i)
     r = nrow(data_test)
     # Train our models
-    knn_1_cv <- knn(data_train[x_names], data_test[x_names], data_train[, y_name], k = 1)
-    knn_max_cv <- knn(data_train[x_names], data_test[x_names], data_train[, y_name], k = k_nn)
+    knn_1_cv <- class::knn(data_train[x_names], data_test[x_names], data_train[, y_name], k = 1)
+    knn_max_cv <- class::knn(data_train[x_names], data_test[x_names], data_train[, y_name], k = k_nn)
     # Record predictions as factors
     predictions[folds == i, 1] <- as.character(knn_1_cv)
     predictions[folds == i, 2] <- as.character(knn_max_cv)
