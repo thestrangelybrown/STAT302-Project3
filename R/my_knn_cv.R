@@ -11,7 +11,7 @@
 #' @keywords inference, prediction.
 #'
 #' @return List object containing:
-#' * `class` a vector of the predicted class $\hat{Y}_{i}$ for all observations.
+#' * `class` a vector of the predicted class Y for all observations.
 #' * `cv_err` a numeric with the cross-validation misclassification error.
 #'
 #' @examples
