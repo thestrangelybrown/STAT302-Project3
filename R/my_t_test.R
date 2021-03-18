@@ -22,6 +22,10 @@
 #'
 #' @export
 my_t_test <- function(x, alternative, mu) {
+  if (!is.numeric(x)) {
+    stop("x must be a numeric vector of data")
+  }
+
   est <- mean(x)
   df <- length(x) - 1
   se <- sd(x)/sqrt(length(x))
